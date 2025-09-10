@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student stories</title>
+    <link rel = "stylesheet" href = "styles.css">
+    <style>
+      img {
+        float: left;
+        margin: 20px;
+      }
+
+      p {
+        overflow: auto;
+        margin: 20px;
+      }
+    </style>
+</head>
+<body style = "text-align: center;">
+    <header>Carnegie Mellon Tech Bridge Coding Boot Camp</header>
+    <h2>Student Stories</h2>
+    <p>These are stories from some of the students on their personalized 
+        pages.  They repsonded to some standard questions about the program.</p>
+    <p>How did you learn about this program?</p>
+    <p>What did you enjoy about the program?</p>
+    <p>What was your biggest surprise about the course?</p>
+    <p>What was your impression of the course work?</p>
+    <p>Write briefly on your plans after finishing the course.</p>
+
+    <body style = "text-align: center;">
+    <img src="image1.jpg" alt="Photo 1">
+    <p>This is a text block that goes along with an avatar picture. 
+      The avatar is on the left, and the text is on the right. 
+    </p>
+    <button onclick = "goToNextProfile()">next profile</button>
+    <br>
+    <br>
+    <button onclick = "goToMainPage()">main page</button>
+    <button onclick = "goToLoginPage()">login page</button>
+    <script>
+//    function goToNextProfile() {
+//    }  retrieve another profile from the database here 
+      function goToMainPage() {
+        window.location.href ="index.html";
+      }
+      function goToLoginPage() {
+        window.location.href ="login.html";
+      }
+    </script>
+    <br>
+    <br>
+    
+    <footer>Carnegie Mellon Tech Bridge Coding Boot Camp</footer>
+</body>
+</html>

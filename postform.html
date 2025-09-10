@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user post update form</title>
+    <link rel = "stylesheet" href = "styles.css">
+<style>
+      img {
+        float: left;
+        margin: 20px;
+      }
+
+      p {
+        overflow: auto;
+        margin: 20px;
+      }
+      
+      .upload-container {
+      border: 2px dashed #112244;
+      border-radius: 10px;
+      background: white;
+      width: 300px;
+      height: 75px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .upload-container.dragover {
+      border-color: #333;
+      background: #f0f0f0;
+    }
+
+    .upload-container input {
+      display: none;
+    }
+
+    .upload-container img {
+      max-width: 100%;
+      max-height: 150px;
+      margin-top: 10px;
+    }
+
+    .upload-container p {
+      margin: 10px 0;
+    }
+
+    .upload-label {
+      color: #112244;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+</style>
+
+<script>
+    function uploadText(){
+    }
+    
+    function uploadPic(){
+    }
+</script>
+
+</head>
+
+<body style = "text-align: center;">
+    <header>Carnegie Mellon Tech Bridge Coding Boot Camp</header>
+    <h3>Use this form to post updates to your account</h3>
+    
+    <img src="photo1.jpg" alt="Photo 1">
+    <form>
+      <textarea rows = "10" cols = "50" maxlength = "1000" minlength = "10">enter text here</textarea>
+    </form>
+    <br>
+    <button onclick = "uploadText()">upload text</button>
+    <br>
+    <br>
+    <div class="upload-container" id="drop-area">
+    <p>Drag & Drop your image here</p>
+    <label for="fileElem" class="upload-label">browse</label>
+    <input type="file" id="fileElem" accept="image/*">
+    <div id="preview"></div>
+    </div>
+    <br>
+    <button onclick = "uploadPic()"> upload picture</button>
+    <br>
+    <br>
+    <footer>Carnegie Mellon Tech Bridge Coding Boot Camp</footer>
+</body>
+</html>

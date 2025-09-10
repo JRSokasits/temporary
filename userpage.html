@@ -1,0 +1,45 @@
+//replaced with postform.html document
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user editing page</title>
+    <link rel = "stylesheet" href = "styles.css">
+    <style>
+        img {
+        float: left;
+        margin: 20px;
+      }
+
+      p {
+        overflow: auto;
+        margin: 20px;
+      }
+    </style>
+</head>
+<body>
+    <header>Carnegie Mellon Tech Bridge Coding Boot Camp</header>
+    <p>Welcome to your editing page.</p>
+    <body style = "text-align: center;">
+    <img src="photo1.jpg" alt="Photo 1">
+    <p>This is some text that goes along with the photos. The photos 
+      are floated to the left, and the text will wrap around them. 
+      You can adjust the margin to control the space between the 
+      photos and the text.</p>
+
+    <button onclick = "goToMainPage()">main page</button>
+    <button onclick = "goToLoginPage()">login page</button>
+    <script>
+      function goToMainPage() {
+        window.location.href ="index.html";
+      }
+      function goToLoginPage() {
+        window.location.href ="login.html";
+      }
+    </script>
+    <br>
+    <br>
+    <footer>Carnegie Mellon Tech Bridge Coding Boot Camp</footer>    
+</body>
+</html>

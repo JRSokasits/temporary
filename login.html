@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login page</title>
+    <link rel = "stylesheet" href = "styles.css">
+    <style>
+    </style>
+</head>
+<body style = "text-align:center;">
+    <header>Carnegie Mellon Tech Bridge Coding Boot Camp</header>
+    <h2>User Login</h2>
+    <p>Log into your account.</p>
+      <form id="login-form">
+      <input type="text" name="username" id="username" class="login-form-field" placeholder="username">
+      <br>
+      <input type="password" name="password" id="password" class="login-form-field" placeholder="password">
+      <br>
+      <input type="submit" value="login" id="login-form-submit">
+      <br>
+      <br>  
+    <script>
+      //create if statement to avoid dead end on this page
+      //if username = "" or password = "" and stories button or mainpage button is pressed
+      //navigate to corresponding page 
+      //does part of this need to be after closing the script section, attached to the 
+      //buttons directly?  should the conditionals be attached to the main page or stories 
+      //page functions?  
+      function validateForm() {
+      let valid = true;
+
+      // username validation 
+      const username = document.getElementById("username").value;
+      if (username === "") {
+        document.getElementById("usernameError").innerHTML = "Please enter a username";
+        valid = false;
+      } else {
+        document.getElementById("usernameError").innerHTML = "";
+      }
+    }
+      // password validation 
+      const password = document.getElementById("password").value;
+      if (password === "") {
+        document.getElementById("password").innerHTML = "Please enter a password";
+        valid = false;
+      } else if (!isValidPassword(password)) {
+        document.getElementById("passwordError").innerHTML = "Invalid format";
+        valid = false;
+      } else {
+        document.getElementById("passwordError").innerHTML = "";
+      }
+      function goToStoriesPage() {
+        window.location.href ="display.html";
+      }
+      function goToMainPage() {
+        window.location.href ="index.html";
+      }  
+
+    </script>
+    <button onclick = "goToMainPage()">main page</button>
+    <button onclick = "goToStoriesPage()">stories page</button>
+    <br>
+    <br>
+    <footer>Carnegie Mellon Tech Bridge Coding Boot Camp</footer>
+</body>
+</html>
