@@ -1,21 +1,61 @@
 const express = require('express');
 //const mongoose = require('mongoose');
-const path = require('path');
-const app = express(); 
-const PORT = 3000;
 //const bcrypt = require("bcryptjs");
-//const bodyParser = require("body-parser");
 //const cors = require("cors");
+const path = require('path');
+const PORT = 3000;
+
+const app = express();
+//app.use(express.json());
+//app.use(cors());
+
+//connection MongoDB (change URL for Atlas)
+//mongoose.connect("mongodb://localhost:27017/myapp", {
+//  useNewUrlParser: true,
+//  useUnifiedTopology: true,
+//});
+//define User Schema
+//const UserSchema = new mongoose.Schema({
+//  username: { type: String, unique: true },
+//  password: String, // stored as a hash
+//});
+
+//const User = mongoose.model("User", UserSchema);
+
+//login route
+//app.post("/api/login", async (req, res) => {
+//  const { username, password } = req.body;
+
+//  try {
+//    const user = await User.findOne({ username });
+//    if (!user) {
+//      return res.json({ success: false, message: "User not found" });
+//    }
+
+//    const isMatch = await bcrypt.compare(password, user.password);
+//    if (!isMatch) {
+//      return res.json({ success: false, message: "Invalid password" });
+//    }
+
+//    res.json({ success: true });
+//  } catch (err) {
+//    console.error(err);
+//    res.status(500).json({ success: false, message: "Server error" });
+//  }
+//});
+
+
+//const bodyParser = require("body-parser");
+//
 
 //app.use(bodyParser.json());
-//app.use(cors());
+//
 
 app.use(express.static(path.join(".", "testpublic")));
 
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`);
 })
-
 
 //app.use(morgan('tiny'));
 //app.use(express.json());

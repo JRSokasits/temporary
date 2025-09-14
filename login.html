@@ -12,64 +12,67 @@
     <header>Carnegie Mellon Tech Bridge Coding Boot Camp</header>
     <h2>User Login</h2>
     <p>Log into your account.</p>
-      <form id="login-form">
-      <input type="text" name="username" id="username" class="login-form-field" placeholder="username">
-      <br>
-      <input type="password" name="password" id="password" class="login-form-field" placeholder="password">
-      <br>
-      <input type="submit" value="login" id="login-form-submit">
-      <br>
-      <br>  
-    <script>
-      //create if statement to avoid dead end on this page
-      //if username = "" or password = "" and stories button or mainpage button is pressed
-      //(use click event) navigate to corresponding page 
-      //does part of this need to be after closing the script section, attached to the 
-      //buttons directly?  can I use the existing username and password validations as part
-      //of this?
+  <form id="login-form" onsubmit="return false;">
+    <input type="text" id="username" placeholder="username"><br>
+    <span id="usernameError";></span>
 
-      function validateForm() {
-      let valid = true;
+    <input type="password" id="password" placeholder="password"><br>
+    <span id="passwordError";></span><br>
 
-      // username validation 
-      const username = document.getElementById("username").value;
-      if (username === "") {
-        document.getElementById("usernameError").innerHTML = "Please enter a username";
-        valid = false;
-      } else {
-        document.getElementById("usernameError").innerHTML = "";
+    <!-- Buttons -->
+    <button type="button" onclick="login()">login</button>
+    <br>
+    <br>
+    <button type="button" onclick="goToMainPage()">main page</button>
+    <button type="button" onclick="goToStoriesPage()">stories page</button>
+  </form>    
+  
+  <script>
+      async function login() {
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        document.getElementById("usernameError").innerText = "";
+        document.getElementById("passwordError").innerText = "";
+
+        if (username === "" || password ==="") {
+          if (username === "") {
+          document.getElementById("usernameError").innerText = "Please enter a username";
+        }
+          if (password ==="") {
+            document.getElementById("passwordError").innerText = "Please enter a password"          
+        }
+          return;
+        }
+
+        try {
+          const response = await fetch("http://localhost:3000/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+          });
+
+          const result = await response.json();
+          if (result.success) {
+            window.location.href = "postform.html";
+          } else {
+            document.getElementById("passwordError").innerText = result.message || "Invalid username or password";
+        }
+      } catch (error) {
+        console.error("Login error:", error);
+        document.getElementById("passwordError").innerText = "Server error. Try again later.";
       }
-      }
-      // password validation 
-      const password = document.getElementById("password").value;
-      if (password === "") {
-        document.getElementById("password").innerHTML = "Please enter a password";
-        valid = false;
-      } else if (!isValidPassword(password)) {
-        document.getElementById("passwordError").innerHTML = "Invalid format";
-        valid = false;
-      } else {
-        document.getElementById("passwordError").innerHTML = "";
-      }
+    }
       
-      //function verifyToPostform () {
-      //request to database, compare input of username and password to stored values 
-      //in database, if both match, load the postform.html page for the user,
-      //otherwise return error message
-      //have this on the index page instead?
-
       function goToStoriesPage() {
         window.location.href ="display.html";
       }
       function goToMainPage() {
         window.location.href ="index.html";
       }  
-
     </script>
-    <button onclick = "goToMainPage()">main page</button>
-    <button onclick = "goToStoriesPage()">stories page</button>
     <br>
-    <br>
+    
     <footer>Carnegie Mellon Tech Bridge Coding Boot Camp</footer>
 </body>
 </html>
