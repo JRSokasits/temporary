@@ -29,22 +29,28 @@
     <p>Write briefly on your plans after finishing the course.</p>
 
     <body style = "text-align: center;">
-    <img src="image1.jpg" alt="Photo 1">
-    <p>This is a text block that goes along with an avatar picture. 
-      The avatar is on the left, and the text is on the right. 
-    </p>
-    <button onclick = "goToNextProfile()">next profile</button>
+    <img src="http://localhost:3000/foldername/filename" alt="Photo 1">
+    <p id = "message">Loading...</p>
     <button onclick = "goToMainPage()">main page</button>
     <button onclick = "goToLoginPage()">login page</button>
     <button onclick = "goToRegisterPage()">create account</button>
+    <button onclick = "goToNextProfile()">next profile</button>    
     <script>
-      
-//    function goToNextProfile() {
-//    }  retrieve another profile from the database here 
-
+      fetch('http://localhost:3000/message')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('message').textContent = data.text;
+      })
+      .catch(err => {
+        document.getElementById('message').textContent = 'Error loading message';
+      });
       function goToMainPage() {
         window.location.href ="index.html";
       }
+//    function goToNextProfile() {
+//    }  retrieve another profile from the database here 
+//    or just pull all populated user profiles to the page and
+//    eliminate this function?
       function goToLoginPage() {
         window.location.href ="login.html";
       }

@@ -59,15 +59,70 @@
 </style>
 
 <script>
-//    function uploadText(){
-//    }
-    
-//    function uploadPic(){
-//    }
-      function exitToMainPage() {
-        window.location.href = "index.html"
-      }
 
+function uploadPic() {
+  const fileInput = document.getElementById('fileElem');
+  const file = fileInput.files[0];
+  if (!file) {
+    alert("Please select an image first!");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('image', file);
+  formData.append('folder', 'profiles'); // 👈 tell server which folder to use
+
+  fetch('http://localhost:3000/upload', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    alert("Uploaded to: " + data.filePath);
+  })
+  .catch(err => console.error(err));
+}
+
+function exitToMainPage() {
+  window.location.href = "index.html"
+}
+      
+//    function uploadText(){
+//    } uploads new text to database
+//    function deletePic() {
+//    }retrieves list of pictures, select one, then delete
+//    function deleteText() {
+//    }retrieves text from database, select segment, then delete
+
+//const token = localStorage.getItem('jwt'); // or use cookie/session
+
+//document.getElementById('delete-image-btn').addEventListener('click', async (e) => {
+//const postId = e.target.dataset.postId;
+//const imageId = e.target.dataset.imageId;
+
+//if (!confirm('Delete this image?')) return;
+
+//const resp = await fetch(`/posts/${postId}/images/${imageId}`, {
+//  method: 'DELETE',
+//  headers: {
+//    'Authorization': `Bearer ${token}`
+//  }
+//});
+
+//const data = await resp.json();
+//if (resp.ok) {
+//  alert('Image deleted');
+//  location.reload();
+//} else {
+//  alert(data.error || 'Error');
+//}
+//});
+
+//code for frontend call for deleting image from user's blog edit page
+//<button id="delete-image-btn" data-post-id="POST_ID" data-image-id="IMAGE_ID">
+//  Delete Image
+//</button>
 </script>
 
 </head>
@@ -76,12 +131,13 @@
     <header>Carnegie Mellon Tech Bridge Coding Boot Camp</header>
     <h3>Use this form to post updates to your account.</h3>
     
-    <img src="photo1.jpg" alt="Photo 1">
+    <img src="http://localhost:3000/foldername/filename" alt="Photo 1">
     <form>
       <textarea rows = "10" cols = "50" maxlength = "1000" minlength = "10">enter text here</textarea>
     </form>
     <br>
-    <button onclick = "uploadText()">upload text</button>
+    <button onclick = "uploadText()">upload text</button>    
+    <button onclick = "deleteText()">delete text</button>
     <br>
     <br>
     <div class="upload-container" id="drop-area">
@@ -91,7 +147,8 @@
     <div id="preview"></div>
     </div>
     <br>
-    <button onclick = "uploadPic()"> upload picture</button>
+    <button onclick = "uploadPic()">upload picture</button>
+    <button onclick = "deletePic()">delete picture</button>
     <br>
     <br>
     <button onclick = "exitToMainPage()">exit to main page</button>
